@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Only Window",
+  "version": "1.0",
+  "description": "Forces all new tabs to open in a new window.",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
