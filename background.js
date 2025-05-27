@@ -28,7 +28,12 @@ chrome.tabs.onCreated.addListener((tab) => {
     chrome.windows.create({}, (window)=>{
       console.log("created window")
       chrome.tabs.move(tab.id, {windowId: window.id, index: 0})
+
       closeStartPages()
+      // Without this, `_blank` pages are covered by start page
+      setTimeout(()=>{
+        closeStartPages()
+      }, 500)
     })
     return;
   }
