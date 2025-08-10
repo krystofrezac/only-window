@@ -25,8 +25,8 @@ chrome.tabs.onCreated.addListener((tab) => {
 
   if (!url) {
     console.log("No url, creating window and moving the tab there")
-    chrome.windows.create({}, (window)=>{
-      console.log("created window")
+    chrome.windows.create({ incognito: tab.incognito }, (window)=>{
+      console.log("Created window")
       chrome.tabs.move(tab.id, {windowId: window.id, index: 0})
 
       closeStartPages()
@@ -44,7 +44,7 @@ chrome.tabs.onCreated.addListener((tab) => {
 
   openedNewWindow = true;
   console.log("Opening", url)
-  chrome.windows.create({ url }, () => {
+  chrome.windows.create({ url, incognito: tab.incognito }, () => {
     console.log("Opened", url)
     chrome.tabs.remove(tab.id); // Close the original tab
   });
